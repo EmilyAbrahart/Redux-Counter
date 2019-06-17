@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { increment, decrement, incrementIfOdd } from '../actions';
+import { increment, decrement } from '../actions';
 
 class Counter extends Component {
 	incrementIfOdd = () => {
 		if (this.props.count % 2 === 1) {
-			return this.props.incrementIfOdd();
+			return this.props.increment();
 		}
 	};
 
-	// incrementAsync = () => {
-	// 	// Stretch Problem: Implement an increment function that
-	// 	// increments after waiting for one second
-	// };
+	incrementAsync = () => {
+		setTimeout(this.props.increment, 1000);
+	};
 
 	render() {
 		// Fill in the two button onClick methods
@@ -51,5 +50,5 @@ const mapStateToProps = state => {
 // makes itself known to this component.
 export default connect(
 	mapStateToProps,
-	{ increment, decrement, incrementIfOdd }
+	{ increment, decrement }
 )(Counter);
